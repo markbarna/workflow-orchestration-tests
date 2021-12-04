@@ -128,3 +128,5 @@ dmypy.json
 # Airflow base artifacts
 airflow/*
 !airflow/dags/
+
+# VSCode
