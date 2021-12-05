@@ -1,7 +1,8 @@
+from handlers.base import BaseHandler
 import logging
 import numpy as np
 
-class MyHandler:
+class MyHandler(BaseHandler):
     
     def __init__(self, array_shape: tuple) -> None:
         self.shape = array_shape

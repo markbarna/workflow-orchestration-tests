@@ -128,5 +128,7 @@ dmypy.json
 # Airflow base artifacts
 airflow/*
 !airflow/dags/
+!airflow/templates/
+!airflow/task_functions
 
 # VSCode
