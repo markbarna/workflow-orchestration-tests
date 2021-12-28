@@ -1,4 +1,5 @@
 from airflow import DAG
+from airflow.operators.dummy import DummyOperator
 from airflow.operators.python import PythonOperator
 from datetime import datetime
 
@@ -8,8 +9,6 @@ with DAG(
     params={"param1": "hello", "param2": "world"},
     schedule_interval=None
 ) as dag:
-    task = PythonOperator(task_id="template", 
-                      python_callable=lambda x: x,
-                      templates_dict={}
-                      )    
+    task = DummyOperator(task_id="dummy_operator")
+    
     task 
