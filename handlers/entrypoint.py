@@ -1,9 +1,9 @@
 from argparse import ArgumentParser
+import logging
 from importlib import import_module
-import pathlib
+import sys
 
-
-def main():
+def main(args: list):
     parser = ArgumentParser(description="Entrypoint for pipeline handlers")
     parser.add_argument(
         "handler_name",
@@ -11,19 +11,21 @@ def main():
     )
     parser.add_argument(
         "-a", "--args",
-        nargs="*"
+        nargs="*",
+        default=tuple()
     )
     parser.add_argument(
         "-r", "--request",
-        nargs="*"
+        nargs="*",
+        default=dict()
     )
-    parsed = parser.parse_args()
-    print(parsed)
+    parsed = parser.parse_args(args)
+    logging.info(f"parsed args {parsed}")
     
-    handler_cls = import_module(name=parsed.handler_name, package="my_handler")
-    hander = handler_cls(parsed.args)
+    handler_cls = getattr(import_module(name="handlers"), parsed.handler_name)
+    hander = handler_cls(*parsed.args)
     request = dict(**parsed.request)
     hander.handle(request)
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1:0])

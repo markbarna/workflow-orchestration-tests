@@ -5,6 +5,8 @@ import numpy as np
 class MyHandler(BaseHandler):
     
     def __init__(self, array_shape: tuple, out_path: str) -> None:
+        if isinstance(array_shape, str):
+            array_shape = tuple(int(i) for i in array_shape[1:-1].split(","))
         self.shape = array_shape
         self.out_path = out_path
     
