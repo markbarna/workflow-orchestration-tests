@@ -28,4 +28,4 @@ def main(args: list):
     hander.handle(request)
 
 if __name__ == "__main__":
-    main(sys.argv[1:0])
+    main(sys.argv[1:])
