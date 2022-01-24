@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: my-pipeline-
+spec:
+  entrypoint: my-handler
+
+  templates:
+    - name: my-handler
+      # inputs: # TODO
+      container:
+        image: k3d-argo-2:59217/argo/handlers_entrypoint:latest
+        command: ["/opt/.venv/bin/python", "-m", "handlers.entrypoint"]
+        args: ["MyHandler", "-a", "(2,3)", "/tmp/out.npy"]

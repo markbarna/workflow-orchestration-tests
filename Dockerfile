@@ -10,5 +10,5 @@ RUN python -m venv .venv && \
 WORKDIR /home
 COPY handlers/ handlers/
 
-ENTRYPOINT [ "/opt/.venv/bin/python" ]
-CMD [ "--version" ]
+ENTRYPOINT [ "/opt/.venv/bin/python", "-m", "handlers.entrypoint" ]
+CMD [ "--help" ]
